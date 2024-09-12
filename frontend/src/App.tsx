@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() => {
     if (!socketRef.current) {
-      const socket = new WebSocket('ws://localhost:8888/ws')
+      const socket = new WebSocket('ws://768a271162aa.ngrok.app/ws')
 
       socket.onopen = () => setConnectionState('Connected')
       socket.onclose = () => setConnectionState('Disconnected')

@@ -22,4 +22,12 @@ npm i
 npm run dev
 # frontend live on http://localhost:5173/
 ```
+
+You'll now see a page to test the socket out. 
+
+![how the test looks](<ex.png>)
+
 ### Try to go offline
+
+1. If you turn off your wifi, the connection status stays 'Connected' 
+2. If you look at the backend, the server _still_ holds the websocket. No 'close' frame was ever sent
