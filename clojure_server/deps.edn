@@ -7,6 +7,7 @@
         luminus/ring-undertow-adapter {:mvn/version "1.2.8"}
         metosin/ring-http-response {:mvn/version "0.9.2"}}
  :aliases
- {:nrepl {:extra-deps
+ {:run {:main-opts ["-m" "undertow-websockets.core"]}
+  :nrepl {:extra-deps
           {nrepl/nrepl {:mvn/version "1.2.0"}}
           :main-opts ["-m" "nrepl.cmdline"]}}}

@@ -2,14 +2,16 @@
   (:require
    [compojure.core :refer [defroutes GET]]
    [undertow-websockets.lib.ring.undertow :as undertow-adapter]
-   [ring.middleware.cors :refer [wrap-cors]]))
+   [ring.middleware.cors :refer [wrap-cors]]
+   [undertow-websockets.lib.ring.websocket :as ws]))
 
 (defn handle-ws [_req]
   {:undertow/websocket
    {:on-open (fn [_]
                (println "[ws] open!"))
-    :on-message (fn [{:keys [_channel _data]}]
-                  (println "[ws] message!"))
+    :on-message (fn [{:keys [channel data]}]
+                  (println "[ws] message!")
+                  (ws/send-text! (str "Echo! " data) channel))
     :on-error (fn [{_throwable :error}]
                 (println "[ws] error!")
                 (println _throwable))

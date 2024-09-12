@@ -33,6 +33,10 @@ function App() {
   return (
     <div className="App">
       <h1>WebSocket Tester</h1>
+      <div>
+        <p>1. Open your inspector. Select 'Go Offline'.</p>
+        <p>2. Notice that the socket _does not_ close on the server</p>
+      </div>
       <p>Connection State: {connectionState}</p>
       <div>
         <input
