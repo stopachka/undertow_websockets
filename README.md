@@ -14,7 +14,7 @@ clj -M:run
 # endpoint now live on ws://localhost:8888/ws
 ```
 
-### The the frontend
+### Run the frontend
 
 ```bash
 cd frontend
@@ -25,7 +25,7 @@ npm run dev
 
 You'll now see a page to test the socket out. 
 
-![how the test looks](<ex.png>)
+<img src="ex.png" alt="how the test looks" style="max-width: 500px; display: block; margin-left: auto; margin-right: auto;">
 
 ### Try to go offline
 
