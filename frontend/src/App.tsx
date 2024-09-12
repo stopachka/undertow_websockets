@@ -20,12 +20,6 @@ function App() {
 
       socketRef.current = socket
     }
-
-    return () => {
-      if (socketRef.current) {
-        socketRef.current.close()
-      }
-    }
   }, [])
 
   const sendMessage = () => {
