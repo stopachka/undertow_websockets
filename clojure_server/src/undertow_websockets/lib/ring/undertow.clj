@@ -7,7 +7,7 @@
    [ring.adapter.undertow.request :refer [build-exchange-map]]
    [ring.adapter.undertow.response :refer [set-exchange-response]]
    [ring.adapter.undertow.ssl :refer [keystore->ssl-context]]
-   [instant.lib.ring.websocket :as ws])
+   [undertow-websockets.lib.ring.websocket :as ws])
   (:import
    [io.undertow Undertow Undertow$Builder UndertowOptions]
    [org.xnio Options SslClientAuthMode]

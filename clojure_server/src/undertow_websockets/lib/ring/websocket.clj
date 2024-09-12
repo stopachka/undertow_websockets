@@ -8,9 +8,7 @@
     3. Supports a thread-safe `send-json!`
     4. Removed the `send` functions that would swallow errors."
   (:refer-clojure :exclude [send])
-  (:require [ring.adapter.undertow.headers :refer [set-headers]]
-            [instant.util.json :refer [->json]]
-            [instant.util.tracer :as tracer])
+  (:require [ring.adapter.undertow.headers :refer [set-headers]])
   (:import
    [io.undertow.server HttpServerExchange]
    [io.undertow.websockets
@@ -113,23 +111,16 @@
       (set-headers (.getResponseHeaders exchange) headers))
     (.handleRequest handler exchange)))
 
-(defn send-json!
-  "Serializes `obj` to json, and sends over a websocket."
-  [obj {:keys [undertow-websocket send-lock]}]
+(defn send-text!
+  [obj-text {:keys [undertow-websocket send-lock]}]
   ;; Websockets/sendText _should_ be thread-safe 
   ;; But, t becomes thread-unsafe when we use per-message-deflate 
   ;; Using a `send-lock` to make `send-json!` thread-safe 
-  (let [obj-json (->json obj)
-        p (promise)
+  (let [p (promise)
         _ (try
-            (tracer/add-data!
-             {:attributes
-              {:send-lock.queue-length (.getQueueLength send-lock)
-               :send-lock.is-locked (.isLocked send-lock)
-               :send-lock.held-by-current-thread (.isHeldByCurrentThread send-lock)}})
             (.lock send-lock)
             (WebSockets/sendText
-             ^String obj-json
+             ^String obj-text
              ^WebSocketChannel undertow-websocket
              (proxy [WebSocketCallback] []
                (complete [ws-conn context]
