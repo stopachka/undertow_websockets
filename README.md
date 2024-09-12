@@ -25,7 +25,9 @@ npm run dev
 
 You'll now see a page to test the socket out. 
 
-<img src="ex.png" alt="how the test looks" style="max-width: 500px; display: block; margin-left: auto; margin-right: auto;">
+<p align="center">
+  <img src="ex.png" alt="how the test looks" width="500">
+</p>
 
 ### Try to go offline
 
